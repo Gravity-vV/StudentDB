@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Majors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mno</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @majors.each do |major| %>
+      <tr>
+        <td><%= major.name %></td>
+        <td><%= major.mno %></td>
+        <td><%= link_to 'Show', major %></td>
+        <td><%= link_to 'Edit', edit_major_path(major) %></td>
+        <td><%= link_to 'Destroy', major, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Major', new_major_path %>

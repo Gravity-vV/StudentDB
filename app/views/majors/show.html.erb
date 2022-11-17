@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @major.name %>
+</p>
+
+<p>
+  <strong>Mno:</strong>
+  <%= @major.mno %>
+</p>
+
+<%= link_to 'Edit', edit_major_path(@major) %> |
+<%= link_to 'Back', majors_path %>
