@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  mno: MyString
+  mno: 1
 
 two:
   name: MyString
-  mno: MyString
+  mno: 1

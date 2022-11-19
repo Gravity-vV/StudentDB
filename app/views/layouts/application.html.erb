@@ -12,5 +12,9 @@
 
   <body>
     <%= yield %>
+    <%if request.url!=root_url %>
+      <%=link_to '返回主页', root_path %>
+    <%end %>
   </body>
+
 </html>

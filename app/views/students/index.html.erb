@@ -7,7 +7,10 @@
     <tr>
       <th>Name</th>
       <th>Stuno</th>
-      <th colspan="3"></th>
+      <th>Birth</th>
+      <th>Male</th>
+      <th>Group_id</th>
+      <th colspan="6"></th>
     </tr>
   </thead>
 
@@ -16,6 +19,9 @@
       <tr>
         <td><%= student.name %></td>
         <td><%= student.stuno %></td>
+        <td><%= student.birth %></td>
+        <td><%= student.male %></td>
+        <td><%= student.group_id %></td>
         <td><%= link_to 'Show', student %></td>
         <td><%= link_to 'Edit', edit_student_path(student) %></td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
