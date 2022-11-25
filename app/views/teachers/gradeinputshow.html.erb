@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Grades Items</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Course</th>
+    <th>Grade</th>
+    <th colspan="4"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @SC.each do |items| %>
+    <tr>
+      <td><%= Student.find(items.student_id).name %></td>
+      <td><%= Course.find(items.course_id).name %></td>
+      <td><%= items.grade %></td>
+<!--      <td><%#= link_to 'Show', teacher %></td>-->
+<!--      <td><%#= link_to 'Edit', edit_teacher_path(teacher) %></td>-->
+<!--      <td><%#= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Teacher', new_teacher_path %>
+
+
+<%= form_tag   gradeinput_teachers_path, method: :get,
+               class: 'srch2' do  %>
+
+  <div class="field">
+    <%= text_field_tag :student_id, nil , placeholder:'学生' %>
+  </div>
+
+  <div class="field">
+    <%= text_field_tag :course_id, nil , placeholder:'课程' %>
+  </div>
+
+  <div class="field">
+    <%= text_field_tag :grade, nil , placeholder:'成绩' %>
+  </div>
+
+  <div class="actions srch">
+    <%= submit_tag '提交'%>
+  </div>
+
+<%end %>

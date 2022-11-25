@@ -6,10 +6,5 @@ class CreateMajors < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-    create_table :majors_groups do |t|
-      t.integer :major_id
-      t.integer :group_id
-      t.timestamps
-    end
   end
 end

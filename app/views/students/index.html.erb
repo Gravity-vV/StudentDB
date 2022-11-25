@@ -32,4 +32,59 @@
 
 <br>
 
+<%= form_tag   searchbysno_search_index_path, method: :get,remote: true,
+              class: 'srch1' do  %>
+
+  <div class="field">
+    <%= text_field_tag :stuno, nil , placeholder:'学号' %>
+  </div>
+
+  <div class="actions srch">
+    <%= submit_tag '根据学号查询'%>
+  </div>
+
+<%end %>
+
+<%= form_tag   searchbynm_search_index_path, method: :get,remote: true,
+               class: 'srch2' do  %>
+
+  <div class="field">
+    <%= text_field_tag :name, nil , placeholder:'姓名' %>
+  </div>
+
+  <div class="actions srch">
+    <%= submit_tag '根据姓名查询'%>
+  </div>
+
+<%end %>
+
+<%= form_tag   searchbymno_search_index_path, method: :get,remote: true,
+               class: 'srch3' do  %>
+
+  <div class="field">
+    <%= text_field_tag :mno, nil , placeholder:'专业号' %>
+  </div>
+
+  <div class="actions srch">
+    <%= submit_tag '根据专业号查询'%>
+  </div>
+
+<%end %>
+
 <%= link_to 'New Student', new_student_path %>
+
+
+<%#= content_for :javascripts do %>
+<!--  <script type="text/javascript">-->
+<!--    // alert('232222');-->
+<!--    $(".srch").on("ajax:success",function(event,data) {-->
+<!--        alert('111');-->
+<!--      if (data.status == 'ok'){-->
+<!--          alert("1111111");-->
+<!--      }-->
+<!--      else{-->
+<!--          alert(data.msg);-->
+<!--      }-->
+<!--    });-->
+<!--  </script>-->
+<%#end -%>

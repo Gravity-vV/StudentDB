@@ -15,21 +15,6 @@ ActiveRecord::Schema.define(version: 2022_11_19_140345) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "SC", force: :cascade do |t|
-    t.integer "student_id"
-    t.integer "group_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "SCG", force: :cascade do |t|
-    t.integer "student_id"
-    t.integer "course_id"
-    t.integer "grade"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.string "cno"
@@ -54,19 +39,20 @@ ActiveRecord::Schema.define(version: 2022_11_19_140345) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "majors_groups", force: :cascade do |t|
-    t.integer "major_id"
-    t.integer "group_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "students", force: :cascade do |t|
     t.string "name"
     t.string "stuno"
     t.string "birth"
     t.boolean "male"
     t.integer "group_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "students_courses", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "course_id"
+    t.integer "grade"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

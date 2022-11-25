@@ -1,6 +1,25 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: %i[ show edit update destroy ]
 
+
+  def gradeinputshow
+    @SC=StudentsCourses.all
+
+  end
+
+  def gradeinput
+    # @SC=StudentsCourses.all
+    @item=StudentsCourses.new
+    @item.student_id=params[:student_id]
+    @item.course_id=params[:course_id]
+    @item.grade=params[:grade]
+    @item.save
+    redirect_to gradeinputshow_teachers_path
+    # if @item.save
+    #    redirect_to gradeinputshow_teachers_path, notice: "Teacher was successfully created."
+    # end
+    # redirect_to gradeinputshow_teachers_path
+  end
   # GET /teachers or /teachers.json
   def index
     @teachers = Teacher.all
@@ -67,4 +86,9 @@ class TeachersController < ApplicationController
     def teacher_params
       params.require(:teacher).permit(:name, :tno,:major_id)
     end
+
+    # def item_params
+    #   params.require(:item).permit(:student_id, :course_id,:grade)
+    # end
+
 end
