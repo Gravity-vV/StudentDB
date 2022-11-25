@@ -6,10 +6,11 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Cno</th>
+<!--      <th>Cno</th>-->
       <th>Compulsory</th>
-      <th>Start_time</th>
-      <th colspan="4"></th>
+<!--      <th>Start_time</th>-->
+      <th>Credit</th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -17,9 +18,10 @@
     <% @courses.each do |course| %>
       <tr>
         <td><%= course.name %></td>
-        <td><%= course.cno %></td>
+<!--        <td><%#= course.cno %></td>-->
         <td><%= course.compulsory %></td>
-        <td><%= course.start_time %></td>
+<!--        <td><%#= course.start_time %></td>-->
+        <td><%= course.credit %></td>
         <td><%= link_to 'Show', course %></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>

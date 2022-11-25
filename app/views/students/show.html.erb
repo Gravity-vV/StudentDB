@@ -25,5 +25,24 @@
   <%= @student.group_id %>
 </p>
 
+<% @courses.each do |course| %>
+  <tr>
+    <td><%= course.name %></td>
+    <td><%= course.compulsory%></td>
+<!-- 暂时不管   <td><%#= course.start_time %></td>-->
+    <td><%= course.credit %></td>
+    <% cor=Course.find course.id%>
+    <td><%= StudentsCourses.joins("INNER JOIN courses ON course_id=courses.id").
+                  where("course_id = ? AND student_id = ?" , course.id , @student.id).average(:grade) %></td>
+  </tr>
+  <br>
+<% end %>
+<tr>
+  <td><%= @comans %></td>
+  <td><%= @allans %></td>
+</tr>
+
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>
+
+
