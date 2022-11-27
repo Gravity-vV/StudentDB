@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Course Select Items</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Teacher</th>
+    <th>Group</th>
+    <th>Course</th>
+    <th>Start time</th>
+    <th colspan="5"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @SC.each do |items| %>
+    <tr>
+      <td><%= Teacher.find(items.teacher_id).name %></td>
+      <td><%= Group.find(items.group_id).name%></td>
+      <td><%= Course.find(items.course_id).name %></td>
+      <td><%= items.start_time %></td>
+      <!--      <td><%#= link_to 'Show', teacher %></td>-->
+      <!--      <td><%#= link_to 'Edit', edit_teacher_path(teacher) %></td>-->
+      <!--      <td><%#= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Teacher', new_teacher_path %>
+
+
+<%= form_tag   courseset_teachers_path, method: :get,
+               class: 'srch2' do  %>
+
+  <div class="field">
+    <%= text_field_tag :teacher_id, nil , placeholder:'老师' %>
+  </div>
+
+  <div class="field">
+    <%= text_field_tag :group_id, nil , placeholder:'班级' %>
+  </div>
+
+  <div class="field">
+    <%= text_field_tag :course_id, nil , placeholder:'课程' %>
+  </div>
+
+  <div class="field">
+    <%= text_field_tag :start_time, nil , placeholder:'开设时间' %>
+  </div>
+
+  <div class="actions srch">
+    <%= submit_tag '提交'%>
+  </div>
+
+<%end %>

@@ -4,22 +4,45 @@ class TeachersController < ApplicationController
 
   def gradeinputshow
     @SC=StudentsCourses.all
-
   end
 
   def gradeinput
     # @SC=StudentsCourses.all
     @item=StudentsCourses.new
-    @item.student_id=params[:student_id]
-    @item.course_id=params[:course_id]
-    @item.grade=params[:grade]
-    @item.save
-    redirect_to gradeinputshow_teachers_path
+    @stu=Student.find(params[:student_id])
+    #find_by只返回找到的第一个值，但是这就够了
+    @rs=TeachersCourses.find_by(group_id: @stu.group.id,
+                                course_id: params[:course_id])
+    #如果没有找到的话就返回，否则保存
+    if !@rs
+      redirect_to gradeinputshow_teachers_path
+    else
+      @item.student_id=params[:student_id]
+      @item.course_id=params[:course_id]
+      @item.grade=params[:grade]
+      @item.save
+      redirect_to gradeinputshow_teachers_path
+    end
+
     # if @item.save
     #    redirect_to gradeinputshow_teachers_path, notice: "Teacher was successfully created."
     # end
     # redirect_to gradeinputshow_teachers_path
   end
+
+  def coursesetshow
+    @SC=TeachersCourses.all
+  end
+  def courseset
+    @item=TeachersCourses.new
+    @item.teacher_id=params[:teacher_id]
+    @item.group_id=params[:group_id]
+    @item.course_id=params[:course_id]
+    @item.start_time=params[:start_time]
+    @item.save
+    redirect_to coursesetshow_teachers_path
+  end
+
   # GET /teachers or /teachers.json
   def index
     @teachers = Teacher.all

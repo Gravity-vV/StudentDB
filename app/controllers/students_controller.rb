@@ -1,3 +1,4 @@
+require 'set'
 class StudentsController < ApplicationController
 
   before_action :set_student, only: %i[ show edit update destroy ]
@@ -13,7 +14,7 @@ class StudentsController < ApplicationController
     # 查询一位学生所修的课程、性质（必修或选修）、学期、学分及成绩；---查询他的必修课平均成绩、所有课程平均成绩（平均成绩应按学分加权）
     #这是当前页面的学生
     # 操你妈的傻逼rails
-    @items=StudentsCourses.where(:student_id == @student.id)
+    @items=StudentsCourses.where(student_id: @student.id)
     @courses=@student.courses
     @comans=0
     @allans=0
@@ -33,8 +34,12 @@ class StudentsController < ApplicationController
     @comans=@comans/sumcrecom
     @allans=@allans/sumcre
 
-    #被哪些教师带过
-
+    #被哪些教师带过(不能重复)
+    @result = Set[]
+    @TC=TeachersCourses.where(group_id: @student.group_id)
+    @TC.each do |t|
+      @result << t.teacher_id
+    end
 
     #先链接，再多条件查询，再使用集函数,除法运算只要有一个是浮点数那么结果就是一个浮点数
     # @conans=Course.joins("INNER JOIN students_courses ON students_courses.course_id=courses.id").

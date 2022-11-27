@@ -29,9 +29,9 @@
   <tr>
     <td><%= course.name %></td>
     <td><%= course.compulsory%></td>
-<!-- 暂时不管   <td><%#= course.start_time %></td>-->
+    <td><%= TeachersCourses.find_by(course_id: course.id,group_id: @student.group_id).start_time %></td>
     <td><%= course.credit %></td>
-    <% cor=Course.find course.id%>
+    <%# cor=Course.find course.id%>
     <td><%= StudentsCourses.joins("INNER JOIN courses ON course_id=courses.id").
                   where("course_id = ? AND student_id = ?" , course.id , @student.id).average(:grade) %></td>
   </tr>
@@ -45,4 +45,10 @@
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>
 
+<p>
+  任课老师:
+<%@result.each do |rs| %>
+  <%=p Teacher.find(rs).name %>
+<% end %>
+</p>
 

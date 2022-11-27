@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     collection do
       get :gradeinputshow
       get :gradeinput
+      get :coursesetshow
+      get :courseset
     end
   end
   resources :students
