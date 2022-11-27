@@ -32,6 +32,15 @@
 
 <br>
 
+<%= form_tag   getstuwei_students_path, method: :get,remote: true,
+               class: 'srch3' do  %>
+
+  <div class="actions srch">
+    <%= submit_tag '查询即将退学学生'%>
+  </div>
+
+<%end %>
+
 <%= form_tag   searchbysno_search_index_path, method: :get,remote: true,
               class: 'srch1' do  %>
 
@@ -72,6 +81,8 @@
 <%end %>
 
 <%= link_to 'New Student', new_student_path %>
+
+
 
 
 <%#= content_for :javascripts do %>

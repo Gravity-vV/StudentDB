@@ -8,6 +8,44 @@ class StudentsController < ApplicationController
     @students = Student.all
   end
 
+  def getstuwei
+    json=Hash.new
+    msg=Hash.new
+    students = Student.all
+    students.each do |stu|
+      items=StudentsCourses.where(student_id: stu.id)
+      comans=0
+      sumcrecom=0
+      items.each do |item|
+        cour=Course.find item.course_id
+        if cour.compulsory
+          comans=comans+cour.credit*item.grade
+          sumcrecom=sumcrecom+cour.credit
+          end
+
+      end
+      comans=comans/sumcrecom
+      if comans-3<=60
+        j={
+            name: stu.name,
+            stuno: stu.stuno,
+            birth: stu.birth,
+            male: stu.male,
+            group_id: stu.group_id
+        }
+        msg=msg.merge(stu.id => j)
+      end
+    end
+    json=json.merge(:msg => msg)
+    if msg.empty?
+      json=json.merge(:status => 'empty')
+      render json: json
+    else
+      json=json.merge(:status => 'err')
+      render json: json
+    end
+  end
+
   # GET /students/1 or /students/1.json
   def show
     #不如让我们在这里把他查出来得了
@@ -31,8 +69,12 @@ class StudentsController < ApplicationController
       #对于每一个item都有一个course_id,根据这个寻找带了这个课的老师即可
 
     end
-    @comans=@comans/sumcrecom
-    @allans=@allans/sumcre
+    if sumcrecom!=0
+      @comans=@comans/sumcrecom
+    end
+    if sumcre!=0
+      @allans=@allans/sumcre
+    end
 
     #被哪些教师带过(不能重复)
     @result = Set[]

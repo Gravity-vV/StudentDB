@@ -11,18 +11,17 @@ Rails.application.routes.draw do
       get :courseset
     end
   end
-  resources :students
+  resources :students do
+    collection do
+      get :getstuwei
+    end
+  end
   root 'welcome#index'
   resources :search do
     collection do
       get :searchbysno
       get :searchbynm
       get :searchbymno
-      # get :searchstuCSCG
-      # get :searchstuavgGcpy
-      # get :searchstuavgGall
-      # get :searchstusT
-      # get :searchstukai
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
