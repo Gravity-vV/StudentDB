@@ -32,49 +32,53 @@
 
 <br>
 
-<%= form_tag   getstuwei_students_path, method: :get,remote: true,
-               class: 'srch3' do  %>
+<%= form_tag   getstuwei_students_path, method: :get,remote: true do  %>
 
-  <div class="actions srch">
+  <div class="actions">
     <%= submit_tag '查询即将退学学生'%>
   </div>
 
 <%end %>
 
-<%= form_tag   searchbysno_search_index_path, method: :get,remote: true,
-              class: 'srch1' do  %>
+<%= form_tag   searchbysno_search_index_path, method: :get,remote: true do  %>
 
   <div class="field">
     <%= text_field_tag :stuno, nil , placeholder:'学号' %>
   </div>
 
-  <div class="actions srch">
+  <div class="actions ">
     <%= submit_tag '根据学号查询'%>
   </div>
 
 <%end %>
 
-<%= form_tag   searchbynm_search_index_path, method: :get,remote: true,
-               class: 'srch2' do  %>
+<div id="srchbysno">
+  <%=render 'students/srchrs' %>
+</div>
+
+<%= form_tag   searchbynm_search_index_path, method: :get,remote: true do  %>
 
   <div class="field">
     <%= text_field_tag :name, nil , placeholder:'姓名' %>
   </div>
 
-  <div class="actions srch">
+  <div class="actions">
     <%= submit_tag '根据姓名查询'%>
   </div>
 
 <%end %>
 
-<%= form_tag   searchbymno_search_index_path, method: :get,remote: true,
-               class: 'srch3' do  %>
+<div id="srchbysno">
+  <%=render 'students/srchrs' %>
+</div>
+
+<%= form_tag   searchbymno_search_index_path, method: :get,remote: true do  %>
 
   <div class="field">
     <%= text_field_tag :mno, nil , placeholder:'专业号' %>
   </div>
 
-  <div class="actions srch">
+  <div class="actions">
     <%= submit_tag '根据专业号查询'%>
   </div>
 

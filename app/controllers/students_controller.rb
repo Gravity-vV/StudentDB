@@ -9,8 +9,10 @@ class StudentsController < ApplicationController
   end
 
   def getstuwei
-    json=Hash.new
-    msg=Hash.new
+    # json=Hash.new
+    # msg=Hash.new
+    @stus=Set[]
+    # @stus=Hash.new
     students = Student.all
     students.each do |stu|
       items=StudentsCourses.where(student_id: stu.id)
@@ -26,24 +28,33 @@ class StudentsController < ApplicationController
       end
       comans=comans/sumcrecom
       if comans-3<=60
-        j={
-            name: stu.name,
-            stuno: stu.stuno,
-            birth: stu.birth,
-            male: stu.male,
-            group_id: stu.group_id
-        }
-        msg=msg.merge(stu.id => j)
+        # j={
+        #     name: stu.name,
+        #     stuno: stu.stuno,
+        #     birth: stu.birth,
+        #     male: stu.male,
+        #     group_id: stu.group_id
+        # }
+        # msg=msg.merge(stu.id => j)
+        @stus << stu
+        # @stus=@stus.merge(stu.id => stu)
+
+      end
+      if !@stus.empty?
+        respond_to do |format|
+          format.html { render partial: 'students/srchrs' }
+        end
       end
     end
-    json=json.merge(:msg => msg)
-    if msg.empty?
-      json=json.merge(:status => 'empty')
-      render json: json
-    else
-      json=json.merge(:status => 'err')
-      render json: json
-    end
+
+  #   json=json.merge(:msg => msg)
+  #   if msg.empty?
+  #     json=json.merge(:status => 'empty')
+  #     render json: json
+  #   else
+  #     json=json.merge(:status => 'err')
+  #     render json: json
+  #   end
   end
 
   # GET /students/1 or /students/1.json
