@@ -11,9 +11,15 @@
   </head>
 
   <body>
-    <%= yield %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
     <%if request.url!=root_url %>
       <%=link_to '返回主页', root_path %>
+    <%end %>
+    <%if current_admin %>
+      <%= button_to "logout", destroy_admin_session_path, method: :delete  %>
+      <%= button_to "AdminDashboard", 'y',method: :get  %>
     <%end %>
   </body>
 

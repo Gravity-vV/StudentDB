@@ -61,3 +61,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rails_admin', '~> 3.0'
 
 gem 'turbo-rails'
+
+# devise
+gem 'devise'

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   mount RailsAdmin::Engine => '/y', as: 'rails_admin'
   resources :majors
   resources :groups
