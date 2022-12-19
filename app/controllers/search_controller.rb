@@ -7,7 +7,7 @@ class SearchController < ApplicationController
     @stus << stu
     if @stus
       respond_to do |format|
-        format.html { render partial: 'students/srchrs' }
+        format.js { render partial: 'students/result' }
       end
     end
     # resault(@stu)
@@ -18,7 +18,7 @@ class SearchController < ApplicationController
     @stus << stu
     if @stus
       respond_to do |format|
-        format.html { render partial: 'students/srchrs' }
+        format.js { render partial: 'students/result' }
       end
     end
     # resault(@stu)
@@ -33,7 +33,7 @@ class SearchController < ApplicationController
     @stus=Student.where(group_id: @mgroups.ids)
     if @stus
       respond_to do |format|
-        format.html { render partial: 'students/srchrs' }
+        format.js { render partial: 'students/result' }
       end
     end
     # json=Hash.new

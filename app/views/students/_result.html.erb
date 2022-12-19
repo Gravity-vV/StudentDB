@@ -3,8 +3,8 @@
   <strong>姓名：</strong><%= stu.name %>
   <strong>学号：</strong><%= stu.stuno %>
   <strong>出生日期：</strong><%= stu.birth %>
-  <strong>性别：</strong><%= stu.male %>
-  <strong>班级：</strong><%= stu.group_id %>
+  <strong>性别：</strong><%= stu.male ? '男' : '女' %>
+  <strong>班级：</strong><%= Group.find(stu.group_id).name %>
     <br>
   <% end %>
 <% end %>

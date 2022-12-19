@@ -64,7 +64,8 @@ class CoursesController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
+    # 专业需要被考虑
     def course_params
-      params.require(:course).permit(:name,:compulsory,:credit)
+      params.require(:course).permit(:cno,:name)
     end
 end

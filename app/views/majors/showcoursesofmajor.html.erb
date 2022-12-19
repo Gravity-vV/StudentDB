@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Majors: <%=@major.name %></h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Course Name</th>
+    <th>Course Number</th>
+    <th>Compulsory</th>
+    <th>Credit</th>
+    <th colspan="4"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @courses.each do |c| %>
+    <tr>
+      <td><%= c.name %></td>
+      <td><%= c.cno %></td>
+      <td><%= MajorsCourses.find_by_course_id(c.id).compulsory %></td>
+      <td><%= MajorsCourses.find_by_course_id(c.id).credit %></td>
+<!--      <td><%#= link_to 'Show', major %></td>-->
+<!--      <td><%#= link_to 'Edit', edit_major_path(major) %></td>-->
+<!--      <td><%#= link_to 'Destroy', major, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<%= link_to 'Back', @major %>
+<%#= link_to 'New Major', new_major_path %>

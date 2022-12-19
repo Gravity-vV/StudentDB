@@ -42,7 +42,7 @@ class StudentsController < ApplicationController
       end
       if !@stus.empty?
         respond_to do |format|
-          format.html { render partial: 'students/srchrs' }
+          format.html { render partial: 'students/result' }
         end
       end
     end
@@ -65,18 +65,22 @@ class StudentsController < ApplicationController
     # 操你妈的傻逼rails
     @items=StudentsCourses.where(student_id: @student.id)
     @courses=@student.courses
+    @major=@student.group.major
     @comans=0
     @allans=0
     sumcrecom=0
     sumcre=0
+    # 关于当前学生的所有成绩记录
     @items.each do |item|
-      cour=Course.find item.course_id
-      if cour.compulsory
-        @comans=@comans+cour.credit*item.grade
-        sumcrecom=sumcrecom+cour.credit
+      # notice: the result of 'where' is a set
+      mc = MajorsCourses.where('major_id = ? AND course_id = ? ',@major.id,item.course_id ).first
+      # cour=Course.find item.course_id
+      if mc.compulsory
+        @comans=@comans+mc.credit*item.grade
+        sumcrecom=sumcrecom+mc.credit
       end
-      @allans=@allans+cour.credit*item.grade
-      sumcre=sumcre+cour.credit
+      @allans=@allans+mc.credit*item.grade
+      sumcre=sumcre+mc.credit
       #对于每一个item都有一个course_id,根据这个寻找带了这个课的老师即可
 
     end

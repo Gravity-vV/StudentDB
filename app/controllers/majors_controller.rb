@@ -1,5 +1,31 @@
 class MajorsController < ApplicationController
-  before_action :set_major, only: %i[ show edit update destroy ]
+  before_action :set_major, only: %i[ show edit update destroy addcourse ]
+
+
+  # addcourse_majors_path
+  def showcoursesofmajor
+    @major=Major.find(params[:id])
+    @courses=@major.courses
+    # @MC=MajorsCourses.find_by_major_id(@major.id)
+  end
+  def addcourse
+  end
+
+  # addcoursepost_majors
+  def addcoursepost
+    @item=MajorsCourses.new
+    @item.major_id = params[:id]
+    # @major=Major.find(params[:id])
+    course = Course.find_by_cno(params[:cno])
+    @item.course_id = course.id
+    @item.compulsory = params[:compulsory]
+    @item.credit = params[:credit]
+    if @item.save
+      redirect_to majors_path
+    else
+      redirect_to addcourse_majors_path
+    end
+  end
 
   # GET /majors or /majors.json
   def index

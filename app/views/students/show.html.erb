@@ -24,26 +24,48 @@
   <strong>group_id:</strong>
   <%= @student.group_id %>
 </p>
-
-<% @courses.each do |course| %>
+<table>
+  <thead>
   <tr>
-    <td><%= course.name %></td>
-    <td><%= course.compulsory%></td>
-    <td><%= TeachersCourses.find_by(course_id: course.id,group_id: @student.group_id).start_time %></td>
-    <td><%= course.credit %></td>
-    <%# cor=Course.find course.id%>
-    <td><%= StudentsCourses.joins("INNER JOIN courses ON course_id=courses.id").
-                  where("course_id = ? AND student_id = ?" , course.id , @student.id).average(:grade) %></td>
+    <th>Course Name</th>
+    <th>Course Feature</th>
+    <th>Start Time</th>
+    <th>Credit</th>
+    <th>Average Grade</th>
+    <th colspan="6"></th>
   </tr>
-  <br>
-<% end %>
+  </thead>
+
+  <tbody>
+  <% @courses.each do |course| %>
+    <tr>
+      <%mc=MajorsCourses.where('major_id = ? AND course_id = ? ',@major.id,course.id ).first %>
+      <td><%= course.name %></td>
+      <td><%= mc.compulsory%></td>
+      <td><%= TeachersCourses.find_by(course_id: course.id,group_id: @student.group_id).start_time %></td>
+      <td><%= mc.credit %></td>
+      <%# cor=Course.find course.id%>
+      <td><%= StudentsCourses.joins("INNER JOIN courses ON course_id=courses.id").
+              where("course_id = ? AND student_id = ?" , course.id , @student.id).average(:grade) %></td>
+    </tr>
+    <br>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
 <tr>
-  <td><%= @comans %></td>
-  <td><%= @allans %></td>
+  <td>Weighted average of compulsory courses: <%= @comans %></td>
+  <br>
+  <td>Weighted average of all courses: <%= @allans %></td>
 </tr>
 
+<br>
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>
+<br>
 
 <p>
   任课老师:

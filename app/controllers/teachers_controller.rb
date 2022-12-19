@@ -9,16 +9,18 @@ class TeachersController < ApplicationController
   def gradeinput
     # @SC=StudentsCourses.all
     @item=StudentsCourses.new
-    @stu=Student.find(params[:student_id])
+    @stu=Student.find_by_stuno(params[:stuno])
+    c=Course.find_by_cno(params[:cno])
     #find_by只返回找到的第一个值，但是这就够了
     @rs=TeachersCourses.find_by(group_id: @stu.group.id,
-                                course_id: params[:course_id])
+                                course_id: c.id)
     #如果没有找到的话就返回，否则保存
     if !@rs
-      redirect_to gradeinputshow_teachers_path
+      #说明还没有开设课程
+      redirect_to courseset_teachers_path
     else
-      @item.student_id=params[:student_id]
-      @item.course_id=params[:course_id]
+      @item.student_id=@stu.id
+      @item.course_id = c.id
       @item.grade=params[:grade]
       @item.save
       redirect_to gradeinputshow_teachers_path
@@ -35,9 +37,12 @@ class TeachersController < ApplicationController
   end
   def courseset
     @item=TeachersCourses.new
-    @item.teacher_id=params[:teacher_id]
-    @item.group_id=params[:group_id]
-    @item.course_id=params[:course_id]
+    t = Teacher.find_by_name(params[:teacher_name])
+    @item.teacher_id = t.id
+    g = Group.find_by_gno(params[:gno])
+    @item.group_id = g.id
+    c = Course.find_by_cno(params[:cno])
+    @item.course_id = c.id
     @item.start_time=params[:start_time]
     @item.save
     redirect_to coursesetshow_teachers_path

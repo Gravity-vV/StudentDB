@@ -32,13 +32,15 @@
 
 <br>
 
-<%= form_tag   getstuwei_students_path, method: :get,remote: true do  %>
+<%= form_tag   getstuwei_students_path, method: :get,remote: true,class: 'srch' do  %>
 
   <div class="actions">
     <%= submit_tag '查询即将退学学生'%>
   </div>
 
 <%end %>
+<div id="results">
+</div>
 
 <%= form_tag   searchbysno_search_index_path, method: :get,remote: true do  %>
 
@@ -53,7 +55,7 @@
 <%end %>
 
 <div id="srchbysno">
-  <%=render 'students/srchrs' %>
+  <%=render 'students/result' %>
 </div>
 
 <%= form_tag   searchbynm_search_index_path, method: :get,remote: true do  %>
@@ -69,7 +71,7 @@
 <%end %>
 
 <div id="srchbysno">
-  <%=render 'students/srchrs' %>
+  <%=render 'students/result' %>
 </div>
 
 <%= form_tag   searchbymno_search_index_path, method: :get,remote: true do  %>

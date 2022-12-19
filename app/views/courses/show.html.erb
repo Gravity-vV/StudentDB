@@ -5,25 +5,25 @@
   <%= @course.name %>
 </p>
 
-<!--<p>-->
-<!--  <strong>Cno:</strong>-->
-  <%#= @course.cno %>
-<!--</p>-->
+<p>
+  <strong>Cno:</strong>
+  <%= @course.cno %>
+</p>
 
 <p>
-  <strong>Compulsory:</strong>
-  <%= @course.compulsory %>
-</p>
+<!--  <strong>Compulsory:</strong>-->
+  <%#= @course.compulsory %>
+<!--</p>-->
 
 <!--<p>-->
 <!--  <strong>Start_time:</strong>-->
   <%#= @course.start_time %>
 <!--</p>-->
 
-<p>
-  <strong>Credit:</strong>
-  <%= @course.credit %>
-</p>
+<!--<p>-->
+<!--  <strong>Credit:</strong>-->
+  <%#= @course.credit %>
+<!--</p>-->
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

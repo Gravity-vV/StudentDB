@@ -1,0 +1,65 @@
+
+<h1>Add Course</h1>
+
+<%= form_tag  addcoursepost_major_path, method:'post' do  %>
+
+  <div class="field">
+    <%= text_field_tag :cno, nil , placeholder:'课程号' %>
+  </div>
+
+  <div class="field">
+    <%= text_field_tag :compulsory, nil , placeholder:'是否必修' %>
+  </div>
+
+
+  <div class="field">
+    <%= text_field_tag :credit, nil , placeholder:'学分' %>
+  </div>
+
+  <div class="actions srch">
+    <%= submit_tag '提交'%>
+  </div>
+
+<%end %>
+
+<%#= form_with(model: Major) do |form| %>
+  <%# if major.errors.any? %>
+<!--    <div id="error_explanation">-->
+<!--      <h2><%#= pluralize(major.errors.count, "error") %> prohibited this major from being saved:</h2>-->
+
+<!--      <ul>-->
+        <%# major.errors.each do |error| %>
+<!--          <li><%#= error.full_message %></li>-->
+        <%# end %>
+<!--      </ul>-->
+<!--    </div>-->
+  <%# end %>
+
+
+<!--  <div class="hidden">-->
+    <%#= form.hidden_label 'major' %>
+    <%#= form.hidden_field :major_id => @major.id %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%#= form.label :course_id %>
+    <%#= form.text_field :course_id %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%#= form.label :compulsory %>
+    <%#= form.text_field :compulsory %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%#= form.label :credit %>
+    <%#= form.text_field :credit %>
+<!--  </div>-->
+
+<!--  <div class="actions">-->
+    <%#= form.submit %>
+<!--  </div>-->
+<%# end %>
+
+
+<%= link_to 'Back', majors_path %>
