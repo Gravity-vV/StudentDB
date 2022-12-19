@@ -29,10 +29,9 @@ ActiveRecord::Schema.define(version: 2022_12_13_163056) do
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
-    t.boolean "compulsory"
+    t.string "cno"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "credit"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -46,6 +45,15 @@ ActiveRecord::Schema.define(version: 2022_12_13_163056) do
   create_table "majors", force: :cascade do |t|
     t.string "name"
     t.integer "mno"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "majors_courses", force: :cascade do |t|
+    t.integer "major_id"
+    t.integer "course_id"
+    t.integer "credit"
+    t.boolean "compulsory"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -79,10 +87,10 @@ ActiveRecord::Schema.define(version: 2022_12_13_163056) do
   create_table "teachers_courses", force: :cascade do |t|
     t.integer "teacher_id"
     t.integer "course_id"
+    t.integer "group_id"
+    t.integer "start_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "start_time"
-    t.integer "group_id"
   end
 
 end

@@ -3,13 +3,13 @@ class CreateCourses < ActiveRecord::Migration[6.1]
     create_table :courses do |t|
       t.string :name
       t.string :cno
-      t.boolean :compusory
-      t.integer :start_time
       t.timestamps
     end
     create_table :teachers_courses do |t|
       t.integer :teacher_id
       t.integer :course_id
+      t.integer :group_id
+      t.integer :start_time
       t.timestamps
     end
 
