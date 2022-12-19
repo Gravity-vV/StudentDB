@@ -2,14 +2,15 @@
 
 <h1>Students</h1>
 
-<table>
-  <thead>
+<table class="table table-striped">
+  <thead class="thead-dark">
     <tr>
-      <th>Name</th>
-      <th>Stuno</th>
-      <th>Birth</th>
-      <th>Male</th>
-      <th>Group_id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Stuno</th>
+      <th scope="col">Birth</th>
+      <th scope="col">Male</th>
+      <th scope="col">Group_id</th>
+      <th scope="col">Option</th>
       <th colspan="6"></th>
     </tr>
   </thead>
@@ -34,13 +35,11 @@
 
 <%= form_tag   getstuwei_students_path, method: :get,remote: true,class: 'srch' do  %>
 
-  <div class="actions">
-    <%= submit_tag '查询即将退学学生'%>
+  <div class="actions"  >
+    <%= submit_tag '查询即将退学学生',:class => 'btn btn-primary'%>
   </div>
 
 <%end %>
-<div id="results">
-</div>
 
 <%= form_tag   searchbysno_search_index_path, method: :get,remote: true do  %>
 
@@ -49,14 +48,17 @@
   </div>
 
   <div class="actions ">
-    <%= submit_tag '根据学号查询'%>
+    <%#= submit_tag '根据学号查询'%>
+    <input type="submit" name="commit" value="根据学号查询"
+           class="btn btn-primary" data-toggle="modal"
+           data-target="#staticBackdrop" data-disable-with="根据学号查询">
   </div>
 
 <%end %>
 
-<div id="srchbysno">
-  <%=render 'students/result' %>
-</div>
+<!--<div id="srchbysno">-->
+  <%#=render 'students/result' %>
+<!--</div>-->
 
 <%= form_tag   searchbynm_search_index_path, method: :get,remote: true do  %>
 
@@ -65,7 +67,10 @@
   </div>
 
   <div class="actions">
-    <%= submit_tag '根据姓名查询'%>
+    <%#= submit_tag '根据姓名查询'%>
+    <input type="submit" name="commit" value="根据姓名查询"
+           class="btn btn-primary" data-toggle="modal"
+           data-target="#staticBackdrop" data-disable-with="根据姓名查询">
   </div>
 
 <%end %>
@@ -81,14 +86,42 @@
   </div>
 
   <div class="actions">
-    <%= submit_tag '根据专业号查询'%>
+    <%#= submit_tag '根据专业号查询'%>
+    <input type="submit" name="commit" value="根据专业号查询"
+           class="btn btn-primary" data-toggle="modal"
+           data-target="#staticBackdrop" data-disable-with="根据专业号查询">
   </div>
 
 <%end %>
 
 <%= link_to 'New Student', new_student_path %>
 
+<!-- Button trigger modal -->
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">-->
+<!--  Launch static backdrop modal-->
+<!--</button>-->
 
+<!-- Modal 模态框-->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="results">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<!--        <button type="button" class="btn btn-primary">Understood</button>-->
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <%#= content_for :javascripts do %>
