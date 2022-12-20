@@ -2,11 +2,13 @@
 
 <h1>Majors</h1>
 
-<table>
-  <thead>
+<table class="table table-striped">
+  <thead class="thead-dark">
     <tr>
       <th>Name</th>
       <th>Mno</th>
+      <th></th>
+      <th>Option</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Major', new_major_path %>
+<%= link_to 'New Major', new_major_path ,:class=>"btn btn-success" %>

@@ -1,18 +1,23 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
+<div class="container">
 
-<p>
-  <strong>Gno:</strong>
-  <%= @group.gno %>
-</p>
+  <p id="notice"><%= notice %></p>
+  <h2>班级信息页</h2>
+  <p>
+    <strong>Name:</strong>
+    <%= @group.name %>
+  </p>
 
-<p>
-  <strong>Major_id:</strong>
-  <%= @group.major_id %>
-</p>
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+  <p>
+    <strong>Gno:</strong>
+    <%= @group.gno %>
+  </p>
+
+  <p>
+    <strong>Major_id:</strong>
+    <%= @group.major_id %>
+  </p>
+  <%= link_to 'Edit', edit_group_path(@group),:class => 'btn btn-success'  %>
+  <%= link_to 'Back', groups_path , :class => 'btn btn-secondary text-white '%>
+</div>
+

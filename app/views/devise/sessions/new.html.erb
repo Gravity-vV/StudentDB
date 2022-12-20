@@ -1,0 +1,45 @@
+<div class="container pb-5">
+
+  <h2>Log in</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name),:class => "form-group",) do |f| %>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true,:class=>"form-control", autocomplete: "email" %>
+    </div>
+    <br />
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password,:class=>"form-control" ,autocomplete: "current-password" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Log in" , :class=>"btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>
+<!--<form>-->
+<!--  <div class="form-group">-->
+<!--    <label for="exampleInputEmail1">Email address</label>-->
+<!--    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
+<!--    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<!--    <label for="exampleInputPassword1">Password</label>-->
+<!--    <input type="password" class="form-control" id="exampleInputPassword1">-->
+<!--  </div>-->
+<!--  <div class="form-group form-check">-->
+<!--    <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--    <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+<!--  </div>-->
+<!--  <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--</form>-->

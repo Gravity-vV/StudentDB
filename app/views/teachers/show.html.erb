@@ -1,19 +1,25 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @teacher.name %>
-</p>
+<div class=" container pb-5">
+  <h2>教师信息页</h2>
 
-<p>
-  <strong>Tno:</strong>
-  <%= @teacher.tno %>
-</p>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>major_id:</strong>
-  <%= @teacher.major_id %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @teacher.name %>
+  </p>
 
-<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
-<%= link_to 'Back', teachers_path %>
+  <p>
+    <strong>Tno:</strong>
+    <%= @teacher.tno %>
+  </p>
+
+  <p>
+    <strong>major_id:</strong>
+    <%= @teacher.major_id %>
+  </p>
+
+  <%= link_to 'Edit', edit_teacher_path(@teacher),:class => 'btn btn-success' %> |
+  <%= link_to 'Back', teachers_path , :class => 'btn btn-secondary text-white ' %>
+
+</div>

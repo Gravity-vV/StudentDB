@@ -1,6 +1,10 @@
-<h1>Editing Teacher</h1>
 
-<%= render 'form', teacher: @teacher %>
 
-<%= link_to 'Show', @teacher %> |
-<%= link_to 'Back', teachers_path %>
+<div class="container">
+  <h1>Editing Teacher</h1>
+
+  <%= render 'form', teacher: @teacher %>
+
+  <%= link_to 'Show', @teacher, :class=>"btn btn-light" %>
+  <%= link_to 'Back', teachers_path, :class=>"btn btn-secondary text-white"  %>
+</div>

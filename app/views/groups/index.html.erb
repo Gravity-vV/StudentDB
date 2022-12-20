@@ -2,12 +2,14 @@
 
 <h1>Groups</h1>
 
-<table>
-  <thead>
+<table class="table table-striped">
+  <thead class="thead-dark">
     <tr>
       <th>Name</th>
       <th>Gno</th>
       <th>Major_id</th>
+      <th></th>
+      <th>Option</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -28,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Group', new_group_path %>
+<%= link_to 'New Group', new_group_path,:class=>"btn btn-success"  %>

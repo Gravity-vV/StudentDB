@@ -1,8 +1,11 @@
+
+
+
 <p id="notice"><%= notice %></p>
 
-<h1>Grades Items</h1>
+<h1>Grades Input</h1>
 
-<table>
+<table class="table">
   <thead>
   <tr>
     <th>Name</th>
@@ -30,23 +33,25 @@
 
 <%#= link_to 'New Teacher', new_teacher_path %>
 
+<div class="container">
 
-<%= form_tag   gradeinput_teachers_path, method: :get do  %>
+  <%= form_tag   gradeinput_teachers_path, method: :get do  %>
 
-  <div class="field">
-    <%= text_field_tag :stuno, nil , placeholder:'学号' %>
-  </div>
+    <div class="field">
+      <%= text_field_tag :stuno, nil , placeholder:'学号',:class=>"form-control" %>
+    </div>
 
-  <div class="field">
-    <%= text_field_tag :cno, nil , placeholder:'课程号' %>
-  </div>
+    <div class="field">
+      <%= text_field_tag :cno, nil , placeholder:'课程号',:class=>"form-control" %>
+    </div>
 
-  <div class="field">
-    <%= text_field_tag :grade, nil , placeholder:'成绩' %>
-  </div>
+    <div class="field">
+      <%= text_field_tag :grade, nil , placeholder:'成绩',:class=>"form-control" %>
+    </div>
 
-  <div class="actions srch">
-    <%= submit_tag '提交'%>
-  </div>
+    <div class="actions srch">
+      <%= submit_tag '提交', :class=>"btn btn-primary"%>
+    </div>
 
-<%end %>
+  <%end %>
+</div>

@@ -1,53 +1,55 @@
-<%= form_with(model: course) do |form| %>
-  <% if course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
 
-      <ul>
-        <% course.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+
+  <%= form_with(model: course) do |form| %>
+    <% if course.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+        <ul>
+          <% course.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :cno %>
+      <%= form.text_field :cno,:class=>"form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name,:class=>"form-control" %>
+    </div>
+
+  <!--  <div class="field">-->
+      <%#= form.label :major_id %>
+      <%#= form.text_field :major_id %>
+  <!--  </div>-->
+
+  <!--  <div class="field">-->
+      <%#= form.label :cno %>
+      <%#= form.text_field :cno %>
+  <!--  </div>-->
+
+  <!--  <div class="field">-->
+      <%#= form.label :compulsory %>
+      <%#= form.text_field :compulsory %>
+  <!--  </div>-->
+
+  <!--  <div class="field">-->
+      <%#= form.label :start_time %>
+      <%#= form.text_field :start_time %>
+  <!--  </div>-->
+
+  <!--  <div class="field">-->
+      <%#= form.label :credit %>
+      <%#= form.text_field :credit %>
+  <!--  </div>-->
+
+
+    <div class="actions">
+      <%= form.submit '编辑' , :class=>"btn btn-primary"%>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :cno %>
-    <%= form.text_field :cno %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-<!--  <div class="field">-->
-    <%#= form.label :major_id %>
-    <%#= form.text_field :major_id %>
-<!--  </div>-->
-
-<!--  <div class="field">-->
-    <%#= form.label :cno %>
-    <%#= form.text_field :cno %>
-<!--  </div>-->
-
-<!--  <div class="field">-->
-    <%#= form.label :compulsory %>
-    <%#= form.text_field :compulsory %>
-<!--  </div>-->
-
-<!--  <div class="field">-->
-    <%#= form.label :start_time %>
-    <%#= form.text_field :start_time %>
-<!--  </div>-->
-
-<!--  <div class="field">-->
-    <%#= form.label :credit %>
-    <%#= form.text_field :credit %>
-<!--  </div>-->
-
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

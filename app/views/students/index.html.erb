@@ -2,6 +2,14 @@
 
 <h1>Students</h1>
 
+<%= form_tag   getstuwei_students_path, method: :get,remote: true,class: 'srch' do  %>
+
+  <div class="actions"  >
+    <%= submit_tag '查询即将退学学生',:class => 'btn btn-danger'%>
+  </div>
+
+<%end %>
+
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
@@ -10,6 +18,7 @@
       <th scope="col">Birth</th>
       <th scope="col">Male</th>
       <th scope="col">Group_id</th>
+      <th scope="col"></th>
       <th scope="col">Option</th>
       <th colspan="6"></th>
     </tr>
@@ -32,69 +41,65 @@
 </table>
 
 <br>
+<div class='container pb-5'>
+  <div class="row">
 
-<%= form_tag   getstuwei_students_path, method: :get,remote: true,class: 'srch' do  %>
+  <%= form_tag   searchbysno_search_index_path, method: :get,remote: true ,:class=>'col' do %>
+    <div class="field">
+      <%= text_field_tag :stuno, nil , placeholder:'学号',:class=>"form-control" %>
+    </div>
+    <div class="actions ">
+      <%#= submit_tag '根据学号查询'%>
+      <input type="submit" name="commit" value="根据学号查询"
+             class="btn btn-primary" data-toggle="modal"
+             data-target="#staticBackdrop" data-disable-with="根据学号查询">
+    </div>
+  <%end %>
 
-  <div class="actions"  >
-    <%= submit_tag '查询即将退学学生',:class => 'btn btn-primary'%>
+  <%= form_tag   searchbynm_search_index_path, method: :get,remote: true,:class=>'col' do  %>
+    <div class="field">
+      <%= text_field_tag :name, nil , placeholder:'姓名',:class=>"form-control" %>
+    </div>
+    <div class="actions">
+      <%#= submit_tag '根据姓名查询'%>
+      <input type="submit" name="commit" value="根据姓名查询"
+             class="btn btn-primary" data-toggle="modal"
+             data-target="#staticBackdrop" data-disable-with="根据姓名查询">
+    </div>
+  <%end %>
+
+
+  <%= form_tag   searchbymno_search_index_path, method: :get,remote: true,:class=>'col' do  %>
+    <div class="field">
+      <%= text_field_tag :mno, nil , placeholder:'专业号',:class=>"form-control" %>
+    </div>
+    <div class="actions">
+      <%#= submit_tag '根据专业号查询'%>
+      <input type="submit" name="commit" value="根据专业号查询"
+             class="btn btn-primary" data-toggle="modal"
+             data-target="#staticBackdrop" data-disable-with="根据专业号查询">
+    </div>
+  <%end %>
+
   </div>
 
-<%end %>
 
-<%= form_tag   searchbysno_search_index_path, method: :get,remote: true do  %>
+  <%= link_to 'New Student', new_student_path,:class=>"btn btn-success" %>
+</div>
 
-  <div class="field">
-    <%= text_field_tag :stuno, nil , placeholder:'学号' %>
-  </div>
 
-  <div class="actions ">
-    <%#= submit_tag '根据学号查询'%>
-    <input type="submit" name="commit" value="根据学号查询"
-           class="btn btn-primary" data-toggle="modal"
-           data-target="#staticBackdrop" data-disable-with="根据学号查询">
-  </div>
 
-<%end %>
 
 <!--<div id="srchbysno">-->
   <%#=render 'students/result' %>
 <!--</div>-->
 
-<%= form_tag   searchbynm_search_index_path, method: :get,remote: true do  %>
 
-  <div class="field">
-    <%= text_field_tag :name, nil , placeholder:'姓名' %>
-  </div>
 
-  <div class="actions">
-    <%#= submit_tag '根据姓名查询'%>
-    <input type="submit" name="commit" value="根据姓名查询"
-           class="btn btn-primary" data-toggle="modal"
-           data-target="#staticBackdrop" data-disable-with="根据姓名查询">
-  </div>
+<!--<div id="srchbysno">-->
+  <%#=render 'students/result' %>
+<!--</div>-->
 
-<%end %>
-
-<div id="srchbysno">
-  <%=render 'students/result' %>
-</div>
-
-<%= form_tag   searchbymno_search_index_path, method: :get,remote: true do  %>
-
-  <div class="field">
-    <%= text_field_tag :mno, nil , placeholder:'专业号' %>
-  </div>
-
-  <div class="actions">
-    <%#= submit_tag '根据专业号查询'%>
-    <input type="submit" name="commit" value="根据专业号查询"
-           class="btn btn-primary" data-toggle="modal"
-           data-target="#staticBackdrop" data-disable-with="根据专业号查询">
-  </div>
-
-<%end %>
-
-<%= link_to 'New Student', new_student_path %>
 
 <!-- Button trigger modal -->
 <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">-->
@@ -106,7 +111,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">查询结果</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -116,7 +121,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
 <!--        <button type="button" class="btn btn-primary">Understood</button>-->
       </div>
     </div>

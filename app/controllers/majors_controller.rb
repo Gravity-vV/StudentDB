@@ -6,9 +6,15 @@ class MajorsController < ApplicationController
   def showcoursesofmajor
     @major=Major.find(params[:id])
     @courses=@major.courses
+    if @courses
+      respond_to do |format|
+        format.js { render partial: 'majors/result' }
+      end
+    end
     # @MC=MajorsCourses.find_by_major_id(@major.id)
   end
   def addcourse
+    @major=Major.find(params[:id])
   end
 
   # addcoursepost_majors
@@ -21,7 +27,7 @@ class MajorsController < ApplicationController
     @item.compulsory = params[:compulsory]
     @item.credit = params[:credit]
     if @item.save
-      redirect_to majors_path
+      redirect_to @major
     else
       redirect_to addcourse_majors_path
     end

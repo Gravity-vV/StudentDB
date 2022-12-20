@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Course Select Items</h1>
+<h1>Courses Offered</h1>
 
-<table>
+<table class="table">
   <thead>
   <tr>
     <th>Teacher</th>
@@ -32,28 +32,34 @@
 
 <%#= link_to 'New Teacher', new_teacher_path %>
 
+<div class="container">
 
-<%= form_tag   courseset_teachers_path, method: :get,
-               class: 'srch2' do  %>
+  <%= form_tag   courseset_teachers_path, method: :get,
+                 class: 'srch2' do  %>
 
-  <div class="field">
-    <%= text_field_tag :teacher_name, nil , placeholder:'老师姓名' %>
-  </div>
+    <div class="field">
+      Teacher Name
+      <%= text_field_tag :teacher_name, nil , placeholder:'老师姓名' ,:class=>"form-control"%>
+    </div>
 
-  <div class="field">
-    <%= text_field_tag :gno, nil , placeholder:'班号' %>
-  </div>
+    <div class="field">
+      Course Number
+      <%= text_field_tag :gno, nil , placeholder:'班号',:class=>"form-control" %>
+    </div>
 
-  <div class="field">
-    <%= text_field_tag :cno, nil , placeholder:'课程号' %>
-  </div>
+    <div class="field">
+      Course Number
+      <%= text_field_tag :cno, nil , placeholder:'课程号',:class=>"form-control" %>
+    </div>
 
-  <div class="field">
-    <%= text_field_tag :start_time, nil , placeholder:'开设时间' %>
-  </div>
+    <div class="field">
+      Start Time
+      <%= text_field_tag :start_time, nil , placeholder:'开设时间',:class=>"form-control" %>
+    </div>
 
-  <div class="actions srch">
-    <%= submit_tag '提交'%>
-  </div>
+    <div class="actions srch">
+      <%= submit_tag '提交', :class=>"btn btn-primary"%>
+    </div>
 
-<%end %>
+  <%end %>
+</div>

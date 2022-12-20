@@ -1,15 +1,9 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
-<%=link_to '学生列表' , students_path%>
-<br>
-<%=link_to '教师列表' , teachers_path%>
-<br>
-<%=link_to '课程列表' , courses_path%>
-<br>
-<%=link_to '班级列表' , groups_path%>
-<br>
-<%=link_to '专业列表' , majors_path%>
-<br>
-<%=link_to '插入成绩' ,gradeinputshow_teachers_path%>
-<br>
-<%=link_to '开课列表' ,coursesetshow_teachers_path%>
+<div class="jumbotron">
+  <h1 class="display-4">Hello, 这里是个学籍管理系统</h1>
+  <p class="lead">
+    在这里，我们可以查询学生信息，录入学生成绩等等操作
+  </p>
+  <hr class="my-4">
+  <p>本管理系统基于rails 6，实现了通过前后端对数据库的增删改查的操作</p>
+  <a class="btn btn-primary btn-lg" href=<%=students_path %> role="button">学生列表</a>
+</div>

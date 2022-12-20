@@ -2,11 +2,13 @@
 
 <h1>Courses</h1>
 
-<table>
-  <thead>
+<table class="table table-striped">
+  <thead class="thead-dark">
     <tr>
       <th>Name</th>
       <th>Cno</th>
+      <th></th>
+      <th>Option</th>
 <!--      <th>Compulsory</th>-->
 <!--      <th>Start_time</th>-->
 <!--      <th>Credit</th>-->
@@ -32,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Course', new_course_path %>
+<%= link_to 'New Course', new_course_path,:class=>"btn btn-success"  %>
