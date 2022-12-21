@@ -12,12 +12,11 @@ class TeachersController < ApplicationController
     @stu=Student.find_by_stuno(params[:stuno])
     c=Course.find_by_cno(params[:cno])
     #find_by只返回找到的第一个值，但是这就够了
-    @rs=TeachersCourses.find_by(group_id: @stu.group.id,
-                                course_id: c.id)
+    @rs=TeachersCourses.find_by(group_id: @stu.group.id, course_id: c.id)
     #如果没有找到的话就返回，否则保存
     if !@rs
-      #说明还没有开设课程
-      redirect_to courseset_teachers_path
+      #说明还没有开设课程,返回到课程开设列表
+      redirect_to coursesetshow_teachers_path
     else
       @item.student_id=@stu.id
       @item.course_id = c.id

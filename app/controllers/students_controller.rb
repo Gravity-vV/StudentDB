@@ -16,18 +16,24 @@ class StudentsController < ApplicationController
     students = Student.all
     students.each do |stu|
       items=StudentsCourses.where(student_id: stu.id)
-      comans=0
-      sumcrecom=0
+      comcre=0
+      optcre=0
+      major=stu.group.major
       items.each do |item|
-        cour=Course.find item.course_id
-        if cour.compulsory
-          comans=comans+cour.credit*item.grade
-          sumcrecom=sumcrecom+cour.credit
+        mc = MajorsCourses.where('major_id = ? AND course_id = ? ',major.id,item.course_id ).first
+        if item.grade<60
+          if mc.compulsory
+            comcre=comcre+mc.credit
+          else
+            optcre=optcre+mc.credit
           end
-
+        end
       end
-      comans=comans/sumcrecom
-      if comans-3<=60
+      if comcre >= 10 || optcre >= 15
+        # 已经退学了
+        next
+      end
+      if comcre >= 7  || optcre >= 12
         # j={
         #     name: stu.name,
         #     stuno: stu.stuno,
@@ -40,9 +46,10 @@ class StudentsController < ApplicationController
         # @stus=@stus.merge(stu.id => stu)
 
       end
+    end
       if !@stus.empty?
         respond_to do |format|
-          format.html { render partial: 'students/result' }
+          format.js { render partial: 'students/result' }
         end
       end
     end
@@ -55,7 +62,6 @@ class StudentsController < ApplicationController
   #     json=json.merge(:status => 'err')
   #     render json: json
   #   end
-  end
 
   # GET /students/1 or /students/1.json
   def show

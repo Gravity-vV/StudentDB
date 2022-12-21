@@ -4,6 +4,7 @@ class MajorsCourses < ApplicationRecord
 
   validates_uniqueness_of :major_id,scope: [:course_id]
 
+  validates :major_id, :course_id, :compulsory, :credit, presence: true
   belongs_to :major
   belongs_to :course
 end

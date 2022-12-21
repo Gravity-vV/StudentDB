@@ -21,6 +21,7 @@ class MajorsController < ApplicationController
   def addcoursepost
     @item=MajorsCourses.new
     @item.major_id = params[:id]
+    @major = Major.find(params[:id])
     # @major=Major.find(params[:id])
     course = Course.find_by_cno(params[:cno])
     @item.course_id = course.id

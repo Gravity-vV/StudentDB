@@ -5,7 +5,10 @@
 <%= form_tag   getstuwei_students_path, method: :get,remote: true,class: 'srch' do  %>
 
   <div class="actions"  >
-    <%= submit_tag '查询即将退学学生',:class => 'btn btn-danger'%>
+    <%#= submit_tag '查询即将退学学生',:class => 'btn btn-danger'%>
+    <input type="submit" name="commit" value="查询即将退学学生"
+           class="btn btn-danger" data-toggle="modal"
+           data-target="#staticBackdrop" data-disable-with="查询即将退学学生">
   </div>
 
 <%end %>
