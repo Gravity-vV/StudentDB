@@ -20,21 +20,24 @@
 
   <p>
     <strong>male:</strong>
-    <%= @student.male %>
+    <%= @student.male ? '男' : '女' %>
   </p>
 
   <p>
-    <strong>group_id:</strong>
-    <%= @student.group_id %>
+    <strong>group:</strong>
+    <%= @student.group.name %>
   </p>
-</div>
-<div class="container">
 
-  <table class="table table-hover text-center">
+  <p>
+    <strong>major:</strong>
+    <%= @student.group.major.name %>
+  </p>
+
+  <table class="table table-hover ">
     <thead>
     <tr>
       <th>Course Name</th>
-      <th>Course Feature</th>
+      <th>Course Nature</th>
       <th>Start Time</th>
       <th>Credit</th>
       <th>Average Grade</th>
@@ -47,23 +50,20 @@
       <tr>
         <%mc=MajorsCourses.where('major_id = ? AND course_id = ? ',@major.id,course.id ).first %>
         <td><%= course.name %></td>
-        <td><%= mc.compulsory%></td>
+        <td><%= mc.compulsory ? '必修' : '选修' %></td>
         <td><%= TeachersCourses.find_by(course_id: course.id,group_id: @student.group_id).start_time %></td>
         <td><%= mc.credit %></td>
         <%# cor=Course.find course.id%>
         <td><%= StudentsCourses.joins("INNER JOIN courses ON course_id=courses.id").
                 where("course_id = ? AND student_id = ?" , course.id , @student.id).average(:grade) %></td>
       </tr>
-      <br>
     <% end %>
     </tbody>
   </table>
 
-</div>
 
 <br>
 
-<div class="container">
 
   <tr>
     <td>Weighted average of compulsory courses: <%= @comans %></td>
@@ -74,7 +74,7 @@
   <p class="le">
     任课老师:
     <%@result.each do |rs| %>
-      <%=p Teacher.find(rs).name %>
+      <%=link_to Teacher.find(rs).name, teacher_path(rs) %>
     <% end %>
   </p>
   <%= link_to 'Edit', edit_student_path(@student),:class => 'btn btn-success' %>

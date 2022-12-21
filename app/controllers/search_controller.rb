@@ -4,10 +4,15 @@ class SearchController < ApplicationController
   def searchbysno
     stu = Student.find_by_stuno(params[:stuno])
     @stus=Set[]
-    @stus << stu
-    if @stus
+
+    if stu
+      @stus << stu
       respond_to do |format|
         format.js { render partial: 'students/result' }
+      end
+    else
+      respond_to do |format|
+        format.js { render partial: 'students/empty' }
       end
     end
     # resault(@stu)
@@ -16,9 +21,15 @@ class SearchController < ApplicationController
     stu = Student.find_by_name(params[:name])
     @stus=Set[]
     @stus << stu
-    if @stus
+
+    if stu
+      @stus << stu
       respond_to do |format|
         format.js { render partial: 'students/result' }
+      end
+    else
+      respond_to do |format|
+        format.js { render partial: 'students/empty' }
       end
     end
     # resault(@stu)
@@ -31,9 +42,15 @@ class SearchController < ApplicationController
     @major = Major.find_by_mno(params[:mno])
     @mgroups=Group.where(major_id: @major.id)#查询出所有的班级
     @stus=Student.where(group_id: @mgroups.ids)
-    if @stus
+
+    if stu
+      @stus << stu
       respond_to do |format|
         format.js { render partial: 'students/result' }
+      end
+    else
+      respond_to do |format|
+        format.js { render partial: 'students/empty' }
       end
     end
     # json=Hash.new

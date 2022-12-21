@@ -47,12 +47,16 @@ class StudentsController < ApplicationController
 
       end
     end
-      if !@stus.empty?
-        respond_to do |format|
-          format.js { render partial: 'students/result' }
-        end
+    if !@stus.empty?
+      respond_to do |format|
+        format.js { render partial: 'students/result' }
+      end
+    else
+      respond_to do |format|
+        format.js { render partial: 'students/empty' }
       end
     end
+  end
 
   #   json=json.merge(:msg => msg)
   #   if msg.empty?

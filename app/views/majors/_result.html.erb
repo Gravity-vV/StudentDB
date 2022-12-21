@@ -9,7 +9,8 @@
     <th>Course Number</th>
     <th>Compulsory</th>
     <th>Credit</th>
-    <th colspan="4"></th>
+    <th>Option</th>
+    <th colspan="5"></th>
   </tr>
   </thead>
 
@@ -18,8 +19,9 @@
     <tr>
       <td><%= c.name %></td>
       <td><%= c.cno %></td>
-      <td><%= MajorsCourses.find_by_course_id(c.id).compulsory %></td>
-      <td><%= MajorsCourses.find_by_course_id(c.id).credit %></td>
+      <td><%= MajorsCourses.where('major_id = ? AND course_id = ? ',@major.id,c.id ).first.compulsory %></td>
+      <td><%= MajorsCourses.where('major_id = ? AND course_id = ? ',@major.id,c.id ).first.credit %></td>
+      <td><%= link_to 'show',course_path(c) %></td>
 <!--      <td><%#= link_to 'Show', major %></td>-->
 <!--      <td><%#= link_to 'Edit', edit_major_path(major) %></td>-->
 <!--      <td><%#= link_to 'Destroy', major, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->

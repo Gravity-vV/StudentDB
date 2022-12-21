@@ -1,15 +1,17 @@
+
+<div class="container">
 <p id="notice"><%= notice %></p>
 
 <h1>Courses Offered</h1>
 
-<table class="table">
-  <thead>
+<table class="table table-hover">
+  <thead class="text-center">
   <tr>
     <th>Teacher</th>
     <th>Group</th>
     <th>Course</th>
     <th>Start time</th>
-    <th colspan="5"></th>
+    <th colspan="4"></th>
   </tr>
   </thead>
 
@@ -19,7 +21,7 @@
       <td><%= Teacher.find(items.teacher_id).name %></td>
       <td><%= Group.find(items.group_id).name%></td>
       <td><%= Course.find(items.course_id).name %></td>
-      <td><%= items.start_time %></td>
+      <td class="text-center"><%= items.start_time %></td>
       <!--      <td><%#= link_to 'Show', teacher %></td>-->
       <!--      <td><%#= link_to 'Edit', edit_teacher_path(teacher) %></td>-->
       <!--      <td><%#= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
@@ -32,7 +34,6 @@
 
 <%#= link_to 'New Teacher', new_teacher_path %>
 
-<div class="container">
 
   <%= form_tag   courseset_teachers_path, method: :get,
                  class: 'srch2' do  %>

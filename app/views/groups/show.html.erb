@@ -15,7 +15,7 @@
 
   <p>
     <strong>Major_id:</strong>
-    <%= @group.major_id %>
+    <%=link_to @group.major.name, major_path(@group.major) %>
   </p>
   <%= link_to 'Edit', edit_group_path(@group),:class => 'btn btn-success'  %>
   <%= link_to 'Back', groups_path , :class => 'btn btn-secondary text-white '%>

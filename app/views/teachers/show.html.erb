@@ -15,8 +15,8 @@
   </p>
 
   <p>
-    <strong>major_id:</strong>
-    <%= @teacher.major_id %>
+    <strong>major:</strong>
+    <%=link_to @teacher.major.name,major_path(@teacher.major) %>
   </p>
 
   <%= link_to 'Edit', edit_teacher_path(@teacher),:class => 'btn btn-success' %>

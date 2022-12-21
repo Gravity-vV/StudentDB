@@ -28,7 +28,7 @@ class MajorsController < ApplicationController
     @item.compulsory = params[:compulsory]
     @item.credit = params[:credit]
     if @item.save
-      redirect_to @major
+      redirect_to  major_path(@major)
     else
       redirect_to addcourse_majors_path
     end

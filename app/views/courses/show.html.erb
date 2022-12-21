@@ -29,6 +29,12 @@
     <!--  <strong>Credit:</strong>-->
     <%#= @course.credit %>
     <!--</p>-->
+  <p class="le">
+    开设专业:
+    <%@majors.each do |rs| %>
+      <%=link_to rs.name, major_path(rs) %>
+    <% end %>
+  </p>
 
     <%= link_to 'Edit', edit_course_path(@course),:class => 'btn btn-success'  %>
     <%= link_to 'Back', courses_path , :class => 'btn btn-secondary text-white '%>
