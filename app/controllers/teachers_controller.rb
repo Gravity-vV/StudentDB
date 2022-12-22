@@ -18,10 +18,20 @@ class TeachersController < ApplicationController
       #说明还没有开设课程,返回到课程开设列表
       redirect_to coursesetshow_teachers_path
     else
-      @item.student_id=@stu.id
-      @item.course_id = c.id
-      @item.grade=params[:grade]
-      @item.save
+      sc=StudentsCourses.find_by(student_id: @stu.id,course_id: c.id)
+      # 如果可以找到已有的成绩记录并且小于60分并且没有补考
+      if sc && sc.grade<60 && !sc.make_up
+        sc.update_attribute(:grade,params[:grade])
+        sc.update_attribute(:make_up,true)
+      end
+      # 说明是第一次成绩录入,插入一条记录
+      if !sc
+        @item.student_id=@stu.id
+        @item.course_id = c.id
+        @item.grade=params[:grade]
+        @item.make_up=false
+        @item.save
+      end
       redirect_to gradeinputshow_teachers_path
     end
 
@@ -42,7 +52,6 @@ class TeachersController < ApplicationController
     @item.group_id = g.id
     c = Course.find_by_cno(params[:cno])
     @item.course_id = c.id
-    @item.start_time=params[:start_time]
     @item.save
     redirect_to coursesetshow_teachers_path
   end

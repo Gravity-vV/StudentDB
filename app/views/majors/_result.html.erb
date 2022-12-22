@@ -5,12 +5,13 @@
 <table>
   <thead>
   <tr>
-    <th>Course Name</th>
-    <th>Course Number</th>
-    <th>Compulsory</th>
-    <th>Credit</th>
-    <th>Option</th>
-    <th colspan="5"></th>
+    <th>课程</th>
+    <th>课程号</th>
+    <th>性质</th>
+    <th>学分</th>
+    <th>开设时间</th>
+    <th>详情</th>
+    <th colspan="6"></th>
   </tr>
   </thead>
 
@@ -21,6 +22,7 @@
       <td><%= c.cno %></td>
       <td><%= MajorsCourses.where('major_id = ? AND course_id = ? ',@major.id,c.id ).first.compulsory %></td>
       <td><%= MajorsCourses.where('major_id = ? AND course_id = ? ',@major.id,c.id ).first.credit %></td>
+      <td><%= MajorsCourses.where('major_id = ? AND course_id = ? ',@major.id,c.id ).first.start_time %></td>
       <td><%= link_to 'show',course_path(c) %></td>
 <!--      <td><%#= link_to 'Show', major %></td>-->
 <!--      <td><%#= link_to 'Edit', edit_major_path(major) %></td>-->

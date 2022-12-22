@@ -73,8 +73,9 @@ class StudentsController < ApplicationController
     # 查询一位学生所修的课程、性质（必修或选修）、学期、学分及成绩；---查询他的必修课平均成绩、所有课程平均成绩（平均成绩应按学分加权）
     #这是当前页面的学生
     # 操你妈的傻逼rails
+    # 假设一个班不会在不同时间同上一门课
     @items=StudentsCourses.where(student_id: @student.id)
-    @courses=@student.courses
+    @courses=@student.courses # 这个同学
     @major=@student.group.major
     @comans=0
     @allans=0
@@ -92,7 +93,6 @@ class StudentsController < ApplicationController
       @allans=@allans+mc.credit*item.grade
       sumcre=sumcre+mc.credit
       #对于每一个item都有一个course_id,根据这个寻找带了这个课的老师即可
-
     end
     if sumcrecom!=0
       @comans=@comans/sumcrecom

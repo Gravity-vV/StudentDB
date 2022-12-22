@@ -4,14 +4,13 @@
 
 <h1>Courses Offered</h1>
 
-<table class="table table-hover">
-  <thead class="text-center">
+<table class="table text-center table-hover">
+  <thead>
   <tr>
     <th>Teacher</th>
     <th>Group</th>
     <th>Course</th>
-    <th>Start time</th>
-    <th colspan="4"></th>
+    <th colspan="3"></th>
   </tr>
   </thead>
 
@@ -21,7 +20,6 @@
       <td><%= Teacher.find(items.teacher_id).name %></td>
       <td><%= Group.find(items.group_id).name%></td>
       <td><%= Course.find(items.course_id).name %></td>
-      <td class="text-center"><%= items.start_time %></td>
       <!--      <td><%#= link_to 'Show', teacher %></td>-->
       <!--      <td><%#= link_to 'Edit', edit_teacher_path(teacher) %></td>-->
       <!--      <td><%#= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
@@ -53,10 +51,10 @@
       <%= text_field_tag :cno, nil , placeholder:'课程号',:class=>"form-control" %>
     </div>
 
-    <div class="field">
-      Start Time
-      <%= text_field_tag :start_time, nil , placeholder:'开设时间',:class=>"form-control" %>
-    </div>
+<!--    <div class="field">-->
+<!--      Start Time-->
+      <%#= text_field_tag :start_time, nil , placeholder:'开设时间',:class=>"form-control" %>
+<!--    </div>-->
 
     <div class="actions srch">
       <%= submit_tag '提交', :class=>"btn btn-primary"%>

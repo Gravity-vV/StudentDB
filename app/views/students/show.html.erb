@@ -40,8 +40,9 @@
       <th>Course Nature</th>
       <th>Start Time</th>
       <th>Credit</th>
-      <th>Average Grade</th>
-      <th colspan="5"></th>
+      <th>Grade</th>
+      <th>Make Up</th>
+      <th colspan="6"></th>
     </tr>
     </thead>
 
@@ -51,11 +52,16 @@
         <%mc=MajorsCourses.where('major_id = ? AND course_id = ? ',@major.id,course.id ).first %>
         <td><%= course.name %></td>
         <td><%= mc.compulsory ? '必修' : '选修' %></td>
-        <td><%= TeachersCourses.find_by(course_id: course.id,group_id: @student.group_id).start_time %></td>
+        <td><%= MajorsCourses.find_by(course_id: course.id,major_id: @student.group.major.id).start_time %></td>
         <td><%= mc.credit %></td>
-        <%# cor=Course.find course.id%>
-        <td><%= StudentsCourses.joins("INNER JOIN courses ON course_id=courses.id").
-                where("course_id = ? AND student_id = ?" , course.id , @student.id).average(:grade) %></td>
+        <% sc=StudentsCourses.joins("INNER JOIN courses ON course_id=courses.id").
+            where("course_id = ? AND student_id = ?" , course.id , @student.id).first%>
+        <td><%= sc.grade %></td>
+        <%if sc.grade<60 %>
+          <td><%= sc.make_up ? '已补考' : '未补考' %></td>
+        <%else%>
+          <td>通过</td>
+        <%end%>
       </tr>
     <% end %>
     </tbody>

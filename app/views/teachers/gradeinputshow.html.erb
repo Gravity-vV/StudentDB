@@ -6,13 +6,14 @@
 
 <h1>Grades Input</h1>
 
-<table class="table table-hover">
-  <thead class="text-center">
+<table class="table table-hover text-center">
+  <thead>
   <tr>
     <th>Name</th>
     <th>Course</th>
     <th>Grade</th>
-    <th colspan="3"></th>
+    <th>Make Up</th>
+    <th colspan="4"></th>
   </tr>
   </thead>
 
@@ -22,6 +23,11 @@
       <td><%= Student.find(items.student_id).name %></td>
       <td><%= Course.find(items.course_id).name %></td>
       <td><%= items.grade %></td>
+      <%if items.grade<60 %>
+        <td><%= items.make_up ? '已补考' : '未补考' %></td>
+      <%else%>
+        <td>通过</td>
+      <%end%>
 <!--      <td><%#= link_to 'Show', teacher %></td>-->
 <!--      <td><%#= link_to 'Edit', edit_teacher_path(teacher) %></td>-->
 <!--      <td><%#= link_to 'Destroy', teacher, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
