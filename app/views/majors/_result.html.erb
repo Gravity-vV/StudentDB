@@ -20,7 +20,7 @@
     <tr>
       <td><%= c.name %></td>
       <td><%= c.cno %></td>
-      <td><%= MajorsCourses.where('major_id = ? AND course_id = ? ',@major.id,c.id ).first.compulsory %></td>
+      <td><%= MajorsCourses.where('major_id = ? AND course_id = ? ',@major.id,c.id ).first.compulsory ? '必修': '选修' %></td>
       <td><%= MajorsCourses.where('major_id = ? AND course_id = ? ',@major.id,c.id ).first.credit %></td>
       <td><%= MajorsCourses.where('major_id = ? AND course_id = ? ',@major.id,c.id ).first.start_time %></td>
       <td><%= link_to 'show',course_path(c) %></td>

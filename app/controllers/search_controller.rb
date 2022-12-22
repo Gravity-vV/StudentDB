@@ -20,7 +20,7 @@ class SearchController < ApplicationController
   def searchbynm
     stu = Student.find_by_name(params[:name])
     @stus=Set[]
-    @stus << stu
+    # @stus << stu
 
     if stu
       @stus << stu
@@ -40,15 +40,27 @@ class SearchController < ApplicationController
     #     status: 'ok'
     # }
     @major = Major.find_by_mno(params[:mno])
+    if !@major
+      respond_to do |format|
+        format.js { render partial: 'students/empty' }
+      end
+      return
+    end
     @mgroups=Group.where(major_id: @major.id)#查询出所有的班级
+    if @mgroups.empty?
+      respond_to do |format|
+        format.js { render partial: 'students/empty' }
+      end
+      return
+    end
     @stus=Student.where(group_id: @mgroups.ids)
 
-    if stu
-      @stus << stu
+    if !@stus.empty?
       respond_to do |format|
         format.js { render partial: 'students/result' }
       end
     else
+      # @stus=Set[]
       respond_to do |format|
         format.js { render partial: 'students/empty' }
       end

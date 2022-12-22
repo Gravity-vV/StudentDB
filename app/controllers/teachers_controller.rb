@@ -52,8 +52,16 @@ class TeachersController < ApplicationController
     @item.group_id = g.id
     c = Course.find_by_cno(params[:cno])
     @item.course_id = c.id
-    @item.save
-    redirect_to coursesetshow_teachers_path
+
+    @rs=MajorsCourses.find_by(major_id: g.major.id, course_id: c.id)
+    # 如果这个班计划里有这门课，那就可以开课
+    if @rs
+      @item.save
+      redirect_to coursesetshow_teachers_path
+    else
+      # 否则就要去对应的专业先开这门课
+      redirect_to addcourse_majors_path(g.major)
+    end
   end
 
   # GET /teachers or /teachers.json

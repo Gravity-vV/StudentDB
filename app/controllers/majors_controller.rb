@@ -27,6 +27,7 @@ class MajorsController < ApplicationController
     @item.course_id = course.id
     @item.compulsory = params[:compulsory]
     @item.credit = params[:credit]
+    @item.start_time = params[:start_time]
     if @item.save
       redirect_to  major_path(@major)
     else
